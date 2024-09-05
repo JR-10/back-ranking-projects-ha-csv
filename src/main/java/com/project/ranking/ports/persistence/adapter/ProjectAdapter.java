@@ -47,4 +47,5 @@ public class ProjectAdapter implements IProjectPersistencePort {
         }
         return projects;
     }
+
 }

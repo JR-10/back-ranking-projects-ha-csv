@@ -11,4 +11,7 @@ public interface IProjectServicePort {
 
     // operacion para listar los proyectos
     List<Project> getAllProjects();
+
+    List<Project> getProjectsByFilter(Long numElements, String nameCategory);
+
 }
