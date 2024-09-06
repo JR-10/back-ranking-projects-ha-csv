@@ -19,19 +19,15 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProjectAdapter implements IProjectPersistencePort {
 
-    // Ruta del archivo CSV
     private static final String CSV_FILE_PATH = "src/main/resources/data/projects.csv";
 
 
-    /*
-    * Metodo implementado desde la interfaz de puerto de persistencia para listar todos los proyectos
-    * */
     @Override
     public List<Project> getAllProjects() {
         List<Project> projects = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(CSV_FILE_PATH))) {
             String[] line;
-            reader.readNext(); // Salta la fila del encabezado
+            reader.readNext();
             while ((line = reader.readNext()) != null) {
                 Project project = new Project();
                 project.setName(line[0]);
@@ -42,7 +38,6 @@ public class ProjectAdapter implements IProjectPersistencePort {
                 projects.add(project);
             }
         } catch (IOException | CsvValidationException e) {
-            // Manejo de excepciones: se puede loggear o lanzar una excepción personalizada
             e.printStackTrace();
         }
         return projects;

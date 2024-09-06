@@ -15,21 +15,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectController {
 
-    // inyectamos el puerto de servicio de proyecto y el mapeador de respuesta de proyecto
     private final IProjectServicePort projectService;
     private final IProjectResponseMapper projectResponseMapper;
 
     @GetMapping("/getAllProjects")
     public ResponseEntity<List<ProjectResponseDto>> getAllProjects() {
-        List<Project> projects = projectService.getAllProjects(); // Obtenemos la lista de proyectos que bienen del puerto de servicio
-        List<ProjectResponseDto> projectResponseDto = projectResponseMapper.projectToProjectResponseDto(projects); // Mapeamos la lista de proyectos a una lista de DTOs de respuesta
+        List<Project> projects = projectService.getAllProjects();
+        List<ProjectResponseDto> projectResponseDto = projectResponseMapper.projectToProjectResponseDto(projects);
         return ResponseEntity.ok().body(projectResponseDto);
     }
 
     @GetMapping("/getProjectFilter")
     public ResponseEntity<List<ProjectResponseDto>> getProjectByFilter(@RequestParam Long numElements, @RequestParam String nameCategory) {
-        List<Project> projects = projectService.getProjectsByFilter(numElements, nameCategory); // Obtenemos la lista de proyectos que bienen del puerto de servicio
-        List<ProjectResponseDto> projectResponseDto = projectResponseMapper.projectToProjectResponseDto(projects); // Mapeamos la lista de proyectos a una lista de DTOs de respuesta
+        List<Project> projects = projectService.getProjectsByFilter(numElements, nameCategory);
+        List<ProjectResponseDto> projectResponseDto = projectResponseMapper.projectToProjectResponseDto(projects);
         return ResponseEntity.ok().body(projectResponseDto);
     }
 }
