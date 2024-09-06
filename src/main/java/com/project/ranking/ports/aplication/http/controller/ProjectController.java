@@ -25,8 +25,8 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectResponseDto);
     }
 
-    @GetMapping("/getProjectFilter")
-    public ResponseEntity<List<ProjectResponseDto>> getProjectByFilter(@RequestParam Long numElements, @RequestParam String nameCategory) {
+    @GetMapping("/getProjectsFilter")
+    public ResponseEntity<List<ProjectResponseDto>> getProjectsByFilter(@RequestParam Long numElements, @RequestParam String nameCategory) {
         List<Project> projects = projectService.getProjectsByFilter(numElements, nameCategory);
         List<ProjectResponseDto> projectResponseDto = projectResponseMapper.projectToProjectResponseDto(projects);
         return ResponseEntity.ok().body(projectResponseDto);
